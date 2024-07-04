@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  minibot.service:
+    image: ${DOCKER_REGISTRY-}minibotservice
+    build:
+      context: .
+      dockerfile: src/MiniBot.Servicio/Dockerfile
+
+  SqlServer:
+    image: mcr.microsoft.com/azure-sql-edge
+    ports:
+      - "1433:1433"
+    environment:
+      - SA_PASSWORD=@OdiN.7072$
+      - ACCEPT_EULA=Y
