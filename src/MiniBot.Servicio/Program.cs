@@ -11,6 +11,7 @@ string azureAppUri = Environment.GetEnvironmentVariable("AZURE_APP_URI") ?? "";
 // dependencias de datos
 
 builder.Services.AddDependenciasDeDatos(builder.Configuration);
+builder.Services.AddServiciosDeChat();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
