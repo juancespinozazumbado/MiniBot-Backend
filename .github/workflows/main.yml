@@ -10,6 +10,11 @@ on:
   pull_request:
     branches:
     - main
+env:
+  AZURE_WEBAPP_NAME: miniboot-servicio
+  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+  
+  
 
 jobs:
   build:
@@ -27,5 +32,13 @@ jobs:
     - name: Build
       run: dotnet build ./MiniBot.sln --configuration Release --no-restore
     - name: Publish project
-      run: dotnet publish ./src/MiniBot.Servicio/MiniBot.Servicio.csproj --configuration Release --no-restore
+      run: dotnet publish ./src/MiniBot.Servicio/MiniBot.Servicio.csproj --configuration Release --no-build --output "{{env.AZURE_WEBAPP_PACKAGE_PATH}}"
+    - name: Publish
+      uses: actions/webapps-deploy@v4
+      with:
+        app-name: "${{env.AZURE_WEBAPP_NAME}}"
+        public-profile: "{{env.AZURE_PUBLIC_PROFILE}}"
+        package: "{{env.AZURE_WEBAPP_PACKAGE_PATH}}"
+       
+    
    
