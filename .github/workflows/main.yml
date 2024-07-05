@@ -32,13 +32,13 @@ jobs:
     - name: Build
       run: dotnet build ./MiniBot.sln --configuration Release --no-restore
     - name: Publish project
-      run: dotnet publish ./src/MiniBot.Servicio/MiniBot.Servicio.csproj --configuration Release --no-build --output "{{env.AZURE_WEBAPP_PACKAGE_PATH}}"
+      run: dotnet publish ./src/MiniBot.Servicio/MiniBot.Servicio.csproj --configuration Release --no-build --output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
     - name: Deploy
       uses: azure/webapps-deploy@v2
       with:
-        app-name: "${{env.AZURE_WEBAPP_NAME}}"
-        publish-profile: "{{secrets.AZURE_PUBLIC_PROFILE}}"
-        package: "{{env.AZURE_WEBAPP_PACKAGE_PATH}}"
+        app-name: ${{env.AZURE_WEBAPP_NAME}}
+        publish-profile: ${{secrets.AZURE_PUBLIC_PROFILE}}
+        package: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
        
     
    
