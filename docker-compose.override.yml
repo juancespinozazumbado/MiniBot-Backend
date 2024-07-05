@@ -6,6 +6,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:8081;http://+:8080
       - AZURE_APP_URI=https://miniboot-servicio.azurewebsites.net/ 
+      - DATABASE_CONNECTION_STRING=${DATABASE_CONNECTION_STRING} 
     ports:
       - "5001:8081"
       - "5000:8080"

@@ -13,6 +13,7 @@ public static class DependenciasDeDatos
 
         
         var cadenaDeConeccion = configuration.GetConnectionString("SQLITE");
+        //var cadenaDeConeccion = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
         services.AddDbContext<ChatBotDbContext>(options => options.UseSqlite(cadenaDeConeccion));
 
         return services;
