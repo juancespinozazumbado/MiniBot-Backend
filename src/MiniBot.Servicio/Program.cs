@@ -5,7 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 //Leer variables de entorno
-string azureAppUri = Environment.GetEnvironmentVariable("AZURE_APP_URI") ?? "";
+
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
+//string azureAppUri = Environment.GetEnvironmentVariable("AZURE_APP_URI") ?? "";
 
 
 // dependencias de datos
@@ -32,7 +38,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapGet("/enviroment", () => new { uri = azureAppUri });
+//app.MapGet("/enviroment", () => new { uri = azureAppUri });
 
 app.MapControllers();
 

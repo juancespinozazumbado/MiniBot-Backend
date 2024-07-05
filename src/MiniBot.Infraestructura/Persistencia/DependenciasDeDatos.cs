@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MiniBot.Dominio.Servicios;
@@ -12,12 +11,9 @@ public static class DependenciasDeDatos
     public static IServiceCollection AddDependenciasDeDatos(this IServiceCollection services, IConfiguration configuration)
     {
 
-
-        var cadenaDeConeccion = configuration.GetConnectionString("SQLSERVER");
-        services.AddDbContext<ChatBotDbContext>(options => options.UseSqlServer(cadenaDeConeccion, 
-              x => x.MigrationsAssembly("MiniBot.Infraestructura"))
-           );
-
+        
+        var cadenaDeConeccion = configuration.GetConnectionString("SQLITE");
+        services.AddDbContext<ChatBotDbContext>(options => options.UseSqlite(cadenaDeConeccion));
 
         return services;
 
