@@ -30,8 +30,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
  
-    app.IniciarMigracionDeDatos();
+   
 }
+
+app.IniciarMigracionDeDatos();
 
 app.UseSwagger();
 app.UseSwaggerUI();
