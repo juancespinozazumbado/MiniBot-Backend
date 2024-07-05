@@ -10,7 +10,7 @@ namespace MiniBot.Servicio.Controllers;
 [Route("api/v1/chat")]
 public class ChatController : ControllerBase
 {
-   
+
     private readonly ILogger<ChatController> _logger;
     private readonly ChatBotDbContext _dbContex;
     private readonly IServicioChat _servicioChat;
@@ -51,13 +51,29 @@ public class ChatController : ControllerBase
             }
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return Problem(ex.Message);
         }
-       
+
 
     }
+
+    [HttpGet("consultas")]
+    public IActionResult ObtenerConsultas()
+    {
+        try
+        {
+            var consultas =  _dbContex.Set<Diccionario>().ToList();
+            return consultas is not null ? Ok(consultas) : NotFound("No hay consultas!");
+
+        }catch(Exception ex)
+        {
+            return Problem(ex.Message); 
+        }
+          
+    }
+
 
 
 

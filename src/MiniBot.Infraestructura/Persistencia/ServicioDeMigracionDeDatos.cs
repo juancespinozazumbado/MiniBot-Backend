@@ -13,8 +13,9 @@ public static class ServicioDeMigracionDeDatos
         {
             var dbCOntext = serviceScope.ServiceProvider.GetRequiredService<ChatBotDbContext>();
 
-            dbCOntext.Database.Migrate();
-             return app;
+             dbCOntext.Database.Migrate();
+             
+            return app;
             
 
         }

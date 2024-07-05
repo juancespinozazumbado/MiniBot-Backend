@@ -1,4 +1,5 @@
-﻿namespace MiniBot.Dominio.Excepciones;
+﻿
+namespace MiniBot.Dominio.Excepciones;
 
 /// <summary>
 /// Clase abstracta para definir excepciones de dominio
@@ -9,5 +10,6 @@ public abstract class ExcepcionBase : Exception
     /// Mensaje de la excepcion
     /// </summary>
     public string Mensage {  get; set; } = string.Empty;
+
 
 }
