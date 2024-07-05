@@ -34,7 +34,6 @@ if (app.Environment.IsDevelopment())
 
 }
 
-app.IniciarMigracionDeDatos();
 
 app.UseSwagger();
 app.UseSwaggerUI();
