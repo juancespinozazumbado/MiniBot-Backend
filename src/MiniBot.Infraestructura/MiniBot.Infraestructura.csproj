@@ -21,8 +21,4 @@
     <ProjectReference Include="..\MiniBot.Dominio\MiniBot.Dominio.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Persistencia\Migrations\" />
-  </ItemGroup>
-
 </Project>

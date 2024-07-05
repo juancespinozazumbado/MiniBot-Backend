@@ -30,7 +30,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
 
-    app.IniciarMigracionDeDatos();
+    //app.IniciarMigracionDeDatos();
 
 }
 
@@ -42,7 +42,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-//app.MapGet("/enviroment", () => new { uri = azureAppUri });
 
 app.MapControllers();
 
