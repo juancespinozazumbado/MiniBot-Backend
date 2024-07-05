@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniBot.Infraestructura.Persistencia;
@@ -11,32 +12,36 @@ using MiniBot.Infraestructura.Persistencia;
 namespace MiniBot.Infraestructura.Migrations
 {
     [DbContext(typeof(ChatBotDbContext))]
-    [Migration("20240705022340_MigracionInical")]
+    [Migration("20240705060707_MigracionInical")]
     partial class MigracionInical
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.6");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("MiniBot.Dominio.Entitdades.Chat.Diccionario", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Consulta")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaModificacion")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Respuesta")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -45,97 +50,97 @@ namespace MiniBot.Infraestructura.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("062bc82d-a4c8-41f4-936d-e823b3b56b33"),
+                            Id = new Guid("a2944e6f-7284-42e6-94b3-e4ceb2ed1d11"),
                             Consulta = "Saludo",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5693),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9173),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Hola! Soy Boti tu asistente virtual, como puedo ayudarte?"
                         },
                         new
                         {
-                            Id = new Guid("2fd2e2b7-9660-4845-acb4-afcd59b5fea9"),
+                            Id = new Guid("71230187-5936-444f-9bf5-8f33e7117983"),
                             Consulta = "¿Cuáles son los horarios de apertura?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5719),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9195),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Estamos abiertos de lunes a sábado de 8:00 AM a 8:00 PM y los domingos de 9:00 AM a 6:00 PM."
                         },
                         new
                         {
-                            Id = new Guid("36bd3697-9084-4e25-b77e-9de2b92536fb"),
+                            Id = new Guid("b3843922-f63e-4666-abd7-14cfaeebb41e"),
                             Consulta = "¿Dónde están ubicados?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5723),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9197),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Estamos ubicados en la calle Principal, número 123, en el centro de la ciudad"
                         },
                         new
                         {
-                            Id = new Guid("54c8aea3-36c5-49bc-8acc-af6aaa133996"),
+                            Id = new Guid("9ef80278-ffb9-4878-a612-a35be8d1d1d6"),
                             Consulta = "¿Ofrecen servicio de entrega a domicilio?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5744),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9200),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Sí, ofrecemos servicio de entrega a domicilio. Puedes realizar tu pedido en línea o llamarnos al (123) 456-7890."
                         },
                         new
                         {
-                            Id = new Guid("db32d32d-3413-4955-91bc-37c72afe2f47"),
+                            Id = new Guid("d6f035df-3d20-409d-9488-7acbfb05a11f"),
                             Consulta = "¿Aceptan tarjetas de crédito?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5746),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9203),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Sí, aceptamos todas las tarjetas de crédito y débito principales."
                         },
                         new
                         {
-                            Id = new Guid("c69ee254-2123-4b33-a434-c00f7988b3d6"),
+                            Id = new Guid("afbdd69f-f3ee-42bc-bda4-4f64c4af0077"),
                             Consulta = "¿Tienen productos orgánicos?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5755),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9208),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Sí, contamos con una variedad de productos orgánicos en nuestra tienda."
                         },
                         new
                         {
-                            Id = new Guid("9da672a5-68a2-41bb-9b20-415c12302aa6"),
+                            Id = new Guid("8d867bcf-ce03-4de8-bef9-53da3bc3afc3"),
                             Consulta = "¿Cuáles son las promociones actuales?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5757),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9211),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Actualmente, tenemos una promoción de 2x1 en productos seleccionados. Puedes ver todas nuestras ofertas en nuestra página de promociones."
                         },
                         new
                         {
-                            Id = new Guid("8f2805ed-c43e-4662-a132-3c4c7b625b2c"),
+                            Id = new Guid("81c560eb-7647-4bf7-9cdc-5791530bd65b"),
                             Consulta = " ¿Puedo hacer un pedido especial?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5759),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9228),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Sí, aceptamos pedidos especiales. Por favor, llámanos al (123) 456-7890 para más detalles."
                         },
                         new
                         {
-                            Id = new Guid("944098e8-e1da-4ad4-aecc-1cd2caf4d2f2"),
+                            Id = new Guid("3940e524-a04c-434b-924d-78e6464b7309"),
                             Consulta = "¿Tienen productos sin gluten?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5761),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9231),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Sí, tenemos una sección dedicada a productos sin gluten. Puedes pedir más información a nuestro personal en la tienda."
                         },
                         new
                         {
-                            Id = new Guid("94fb4cd5-1b96-4261-80cd-c82990a29050"),
+                            Id = new Guid("a41c12c3-4f77-4bb2-bbe9-931df9f4a419"),
                             Consulta = "¿Puedo devolver un producto?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5765),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9234),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Sí, aceptamos devoluciones dentro de los 30 días de la compra con el recibo original."
                         },
                         new
                         {
-                            Id = new Guid("4472b17f-b6d1-4388-b9c7-85cecc1c709a"),
+                            Id = new Guid("d33c1fd3-6563-43d8-9d10-c22926a835d4"),
                             Consulta = "¿Tienen un programa de fidelización?",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5767),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9237),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Sí, tenemos un programa de fidelización. Puedes registrarte en nuestra tienda y empezar a acumular puntos con cada compra."
                         },
                         new
                         {
-                            Id = new Guid("ebd595fc-f0fc-4539-9206-6506bd7a8241"),
+                            Id = new Guid("7366a0c4-3a8d-4c54-867d-0a847e4c783a"),
                             Consulta = "No reconocida",
-                            FechaCreacion = new DateTime(2024, 7, 4, 20, 23, 39, 711, DateTimeKind.Local).AddTicks(5773),
+                            FechaCreacion = new DateTime(2024, 7, 5, 0, 7, 5, 200, DateTimeKind.Local).AddTicks(9239),
                             FechaModificacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Respuesta = "Lo siento, no tengo contexto para responder tu pregunta, podrias darme mas detalles para ayudarte."
                         });
