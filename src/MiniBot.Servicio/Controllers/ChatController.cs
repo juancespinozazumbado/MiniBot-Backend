@@ -32,6 +32,7 @@ public class ChatController : ControllerBase
     [HttpPost("send")]
     public async Task<IActionResult> EnviarMensage(Mensage consulta)
     {
+
         try
         {
             if (_servicioChat.Validar(consulta.Texto))
