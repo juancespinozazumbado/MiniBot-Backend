@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: src/MiniBot.Servicio/Dockerfile
+    depends_on: 
+     - SqlServer
 
   SqlServer:
     image: mcr.microsoft.com/azure-sql-edge
