@@ -32,19 +32,29 @@ public class ChatController : ControllerBase
     [HttpPost("send")]
     public async Task<IActionResult> EnviarMensage(Mensage consulta)
     {
-        if (_servicioChat.Validar(consulta.Texto))
-        {
-            var diccionario = await _dbContex.Set<Diccionario>()
-                .FirstOrDefaultAsync( c => c.Consulta.Equals(consulta.Texto));
-            return Ok(new { Respuesta = diccionario.Respuesta });
-           
-        }else
-        {
-            // Indica que no existe respuesta para esta pregunta!
-            var respuestaDefault = _dbContex.Set<Diccionario>()
-                .First(c => c.Consulta.Equals("No reconocida"));
-            return Ok(new {Respuesta = respuestaDefault.Respuesta});
-        }
+       try
+{
+    if (_servicioChat.Validar(consulta.Texto))
+    {
+        var diccionario = await _dbContex.Set<Diccionario>()
+            .FirstOrDefaultAsync(c => c.Consulta.Equals(consulta.Texto));
+        return Ok(new { Respuesta = diccionario.Respuesta });
+
+    }
+    else
+    {
+        // Indica que no existe respuesta para esta pregunta!
+        var respuestaDefault = _dbContex.Set<Diccionario>()
+            .First(c => c.Consulta.Equals("No reconocida"));
+        return Ok(new { Respuesta = respuestaDefault.Respuesta });
+    }
+
+}
+catch(Exception ex)
+{
+    return Problem(ex.Message);
+}
+        
 
     }
 
