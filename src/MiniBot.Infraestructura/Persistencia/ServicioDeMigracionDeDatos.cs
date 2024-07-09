@@ -13,8 +13,12 @@ public static class ServicioDeMigracionDeDatos
         {
             var dbCOntext = serviceScope.ServiceProvider.GetRequiredService<ChatBotDbContext>();
 
-             dbCOntext.Database.Migrate();
-             
+            // use esta configuracion en entornos inMemory 
+            dbCOntext.Database.EnsureCreated();
+
+            // para entornos reales con Motores de DB 
+            //dbCOntext.Database.Migrate();
+
             return app;
             
 
