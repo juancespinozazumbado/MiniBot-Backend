@@ -38,9 +38,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
 
-    app.IniciarMigracionDeDatos();
+    //app.IniciarMigracionDeDatos();
 
 }
+
+// en caso de usar base de datos inMemmory
+app.IniciarMigracionDeDatos();
 
 
 
