@@ -12,8 +12,8 @@ public static class DependenciasDeDatos
     {
 
         
-        var cadenaDeConeccion = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
-        services.AddDbContext<ChatBotDbContext>(options => options.UseSqlServer(cadenaDeConeccion));
+       //// var cadenaDeConeccion = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
+         services.AddDbContext<ChatBotDbContext>(options => options.UseInMemoryDatabase("chatdb"));
 
         return services;
 
